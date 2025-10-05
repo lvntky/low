@@ -1,5 +1,7 @@
 # low
 
+![ss](./docs/ss.png)
+
 > A minimal, retro-inspired Jekyll theme for engineers who care about the metal.
 
 **low** is a lightweight Jekyll theme designed for technical blogging — inspired by [Fabien Sanglard’s website](https://fabiensanglard.net/).  
