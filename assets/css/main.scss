@@ -1,9 +1,14 @@
 ---
+# Jekyll front matter for SCSS
 ---
+
+/* ===============================
+   FONT FACE
+   =============================== */
 @font-face {
   font-family: 'fabfont';
   src: url('{{ "/assets/font/DejaVuSansMono.woff2" | relative_url }}') format('woff2'),
-       url('{{ "/assets/font/DejaVuSansMono.woff"  | relative_url }}') format('woff');
+       url('{{ "/assets/font/DejaVuSansMono.woff" | relative_url }}') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -12,51 +17,117 @@
 @font-face {
   font-family: 'fabfont';
   src: url('{{ "/assets/font/DejaVuSansMono-Bold.woff2" | relative_url }}') format('woff2'),
-       url('{{ "/assets/font/DejaVuSansMono-Bold.woff"  | relative_url }}') format('woff');
+       url('{{ "/assets/font/DejaVuSansMono-Bold.woff" | relative_url }}') format('woff');
   font-weight: bold;
   font-style: normal;
   font-display: block;
 }
 
-* { font-size: 16px; }
+/* ===============================
+   BASE RESET
+   =============================== */
+* {
+  font-size: 16px;
+  box-sizing: border-box;
+}
 
 html {
   font-family: 'fabfont', 'DejaVu Sans Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
   max-width: 900px;
+  margin: 0 auto;
   padding-left: 2%;
   padding-right: 3%;
-  margin: 0 auto;
   background: #F5F5F0;
+  line-height: 1.5;
+  color: #000;
 }
 
-a { color: black; font-weight: bold; }
-img { border: none; }
-
-p { margin-top: 0px; text-align: justify; }
-
-sup { vertical-align: 0.3em; font-size: 0.65em; }
-
-pre {
-  font-family: 'fabfont', monospace;
-  background-color: white;
-  border: 1px solid black;
-  padding-left: 2%;
-  padding-top: 1ch;
-  padding-bottom: 1ch;
-  overflow: hidden;
+body {
+  margin: 0;
+  padding: 0;
 }
 
+/* ===============================
+   LINKS & TYPOGRAPHY
+   =============================== */
+a {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+p {
+  margin-top: 0;
+  text-align: justify;
+}
+
+sup {
+  vertical-align: 0.3em;
+  font-size: 0.65em;
+}
+
+/* ===============================
+   HEADINGS
+   =============================== */
 div.heading {
   font-weight: bold;
   text-transform: uppercase;
   margin-top: 4ch;
 }
 
-@media (max-width: 500px) {
-  * { font-size: 12px; }
+h1, h2, h3, h4 {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 4ch;
 }
 
-.title { text-decoration: none; }
+/* ===============================
+   CODE & PRE BLOCKS
+   =============================== */
+pre, code {
+  font-family: 'fabfont', monospace;
+}
+
+pre {
+  background-color: white;
+  border: 1px solid black;
+  padding: 1ch 2%;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+code {
+  background-color: #e1e1e1;
+  border-radius: 0.5ch;
+  padding: 0.2ch 0.4ch;
+  font-weight: bold;
+}
+
+/* Inline code inside pre shouldn't have double background */
+pre code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  font-weight: normal;
+}
+
+/* ===============================
+   IMAGES & MEDIA
+   =============================== */
+img, video, canvas, iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  box-sizing: border-box;
+}
+
+img {
+  border: none;
+  margin-bottom: 2ch;
+}
 
 img.pixel, canvas.pixel {
   image-rendering: pixelated;
@@ -64,34 +135,38 @@ img.pixel, canvas.pixel {
   image-rendering: crisp-edges;
 }
 
+/* For blog images inside posts */
+.post img,
+article img {
+  border: 1px solid black;
+  margin-bottom: 2ch;
+}
+
+/* ===============================
+   BLOCKQUOTE
+   =============================== */
 blockquote {
   background-color: #f3f3f3;
-  border: dashed 1px grey;
+  border: 1px dashed grey;
   width: 97.5%;
   font-style: italic;
   text-align: justify;
-  padding: 1ch;
-  padding-top: 2ch;
-  padding-bottom: 2ch;
-  margin: 0ch 0ch 2ch 0ch;
+  padding: 2ch 1ch;
+  margin: 0 0 2ch 0;
 }
-
 blockquote div {
   text-transform: none;
   text-align: right;
   width: 100%;
 }
 
-code {
-  font-weight: bold;
-  background-color: #e1e1e1;
-  border-radius: 0.5ch;
-  padding-left: 0.3ch;
-  padding-right: 0.3ch;
+/* ===============================
+   TRIVIA BLOCK
+   =============================== */
+.trivia {
+  border-left: 1px solid black;
+  padding-left: 1ch;
 }
-
-.trivia { border-left: 1px black solid; padding-left: 1ch; }
-
 .trivia::before {
   font-weight: bold;
   text-decoration: underline;
@@ -99,10 +174,9 @@ code {
   content: "Trivia:";
 }
 
-/* container hook */
-.container {}
-
-/* --- Footer --- */
+/* ===============================
+   FOOTER
+   =============================== */
 .footer {
   text-align: center;
   margin-top: 4ch;
@@ -111,3 +185,11 @@ code {
   font-size: 0.9em;
 }
 
+/* ===============================
+   RESPONSIVE
+   =============================== */
+@media (max-width: 500px) {
+  * {
+    font-size: 12px;
+  }
+}
