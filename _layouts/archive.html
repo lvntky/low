@@ -1,0 +1,19 @@
+---
+layout: default
+---
+<div class="heading">Archive</div>
+<hr>
+
+{% assign grouped = site.posts | group_by_exp: 'post', 'post.date | date: "%Y"' %}
+{% assign grouped = grouped | sort: 'name' | reverse %}
+{% for year in grouped %}
+  <h2 style="margin-top:2ch;">{{ year.name }}</h2>
+  <hr>
+  <p style="text-align:left; margin-bottom:1ch;">
+    {% assign posts_sorted = year.items | sort: "date" | reverse %}
+    {% for post in posts_sorted %}
+      {{ post.date | date: "%d/%m/%Y" }}:
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a><br>
+    {% endfor %}
+  </p>
+{% endfor %}

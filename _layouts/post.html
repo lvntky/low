@@ -1,0 +1,24 @@
+---
+layout: default
+---
+<article class="post">
+  <h1>{{ page.title }}</h1>
+
+  {% include post-meta.html %}
+
+  {{ content }}
+
+  <hr>
+  <nav class="post-nav" style="display:flex; justify-content:space-between;">
+    <div class="prev">
+      {% if page.previous %}
+        ← <a href="{{ page.previous.url | relative_url }}">{{ page.previous.title }}</a>
+      {% endif %}
+    </div>
+    <div class="next" style="text-align:right;">
+      {% if page.next %}
+        <a href="{{ page.next.url | relative_url }}">{{ page.next.title }}</a> →
+      {% endif %}
+    </div>
+  </nav>
+</article>

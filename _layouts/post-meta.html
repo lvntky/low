@@ -1,0 +1,11 @@
+<p class="meta" style="margin:0 0 2ch 0; opacity:.8;">
+  <time datetime="{{ page.date | date_to_xmlschema }}">
+    {{ page.date | date: "%d/%m/%Y" }}
+  </time>
+  {% if page.categories and page.categories.size > 0 %}
+    · {{ page.categories | array_to_sentence_string }}
+  {% endif %}
+  {% if page.tags and page.tags.size > 0 %}
+    · tags: {{ page.tags | array_to_sentence_string }}
+  {% endif %}
+</p>
