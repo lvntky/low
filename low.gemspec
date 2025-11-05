@@ -4,8 +4,8 @@ require_relative "lib/low/version"
 Gem::Specification.new do |spec|
   spec.name          = "low"
   spec.version       = Low::VERSION
-  spec.summary       = "A crisp, mono Jekyll theme."
-  spec.homepage      = "https://github.com/you/low"
+  spec.summary       = "A minimal, retro-inspired Jekyll theme for engineers who care about the metal."
+  spec.homepage      = "https://github.com/lvntky/low"
   spec.license       = "MIT"
 
   spec.authors       = ["Levent Kaya"]
