@@ -1,17 +1,22 @@
 ---
 layout: default
 ---
-<div class="heading">{{ site.title }}</div>
-<hr>
-<p>This is my personal site where I document code experiments and random ideas that pop into my head during downtime.</p>
 
-<div class="heading">Articles</div>
+<h1 class="heading">{{ site.title }}</h1>
+<hr>
+
+<p>
+  This is my personal site where I document code experiments and random ideas
+  that pop into my head during downtime.
+</p>
+
+<h2 class="heading">Articles</h2>
 <hr>
 {% include post-list.html %}
 
-<div class="heading">Projects</div>
+<h2 class="heading">Projects</h2>
 <hr>
-Ongoing...: <a href="{{ '/projects/' | relative_url }}">Projects</a><br>
+Ongoing… <a href="{{ '/projects/' | relative_url }}">Projects</a>
 
 <hr>
-<center ><span class=".sun">*</span></center>
+<center><span class="sun">*</span></center>
