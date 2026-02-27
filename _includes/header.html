@@ -17,7 +17,7 @@
   {% assign depth = page.path | split: "/" %}
   {% if depth.size == 1 and page.title %}
     {% assign ext = page.path | split: "." | last %}
-    {% if ext == "md" %}
+    {% if ext == "md" and page.title != "Archive" %}
       <a class="title" href="{{ page.url | relative_url }}">{{ page.title | upcase }}</a>&nbsp;&nbsp;&nbsp;
     {% endif %}
   {% endif %}

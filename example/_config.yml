@@ -7,6 +7,7 @@ description: "Personal notes on graphics, OS-dev, C/C++ and low-level experiment
 email: leventkayadev@gmail.com
 favicon: /assets/images/favicon.png
 show_rss: false
+show_archive: false
 # Author (single definition)
 author:
   name: "Levent Kaya"
