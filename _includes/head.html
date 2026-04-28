@@ -2,6 +2,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=12.0, minimum-scale=1.0, user-scalable=yes">
 <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
 
+{% if page.description %}
+  <meta name="description" content="{{ page.description | strip_html | truncate: 160 }}">
+{% elsif site.description %}
+  <meta name="description" content="{{ site.description | strip_html | truncate: 160 }}">
+{% endif %}
+
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 
 {% if site.favicon %}
@@ -11,3 +17,25 @@
 <link rel="alternate" type="application/rss+xml" title="{{ site.title }} RSS" href="{{ site.feed.path | default: '/rss.xml' | relative_url }}">
 
 {% seo %}
+
+{% if page.layout == 'post' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": {{ page.title | jsonify }},
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
+  "author": {
+    "@type": "Person",
+    "name": {{ site.author.name | default: site.author | jsonify }},
+    "url": {{ site.url | jsonify }}
+  },
+  "description": {{ page.description | default: site.description | strip_html | jsonify }},
+  "url": "{{ site.url }}{{ page.url }}"
+  {% if page.tags and page.tags.size > 0 %}
+  ,"keywords": {{ page.tags | join: ", " | jsonify }}
+  {% endif %}
+}
+</script>
+{% endif %}

@@ -1,12 +1,14 @@
 ---
 layout: default
 ---
-<article class="post">
-  <h1>{{ page.title }}</h1>
+<article class="post" itemscope itemtype="https://schema.org/TechArticle">
+  <h1 itemprop="headline">{{ page.title }}</h1>
 
   {% include post-meta.html %}
 
-  {{ content }}
+  <div itemprop="articleBody">
+    {{ content }}
+  </div>
 
   <hr>
   <nav class="post-nav" style="display:flex; justify-content:space-between;">

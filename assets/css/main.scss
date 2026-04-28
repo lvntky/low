@@ -251,5 +251,24 @@ blockquote div {
 }
 
 /* ===============================
+   TAG LINKS
+   =============================== */
+a.tag-link {
+  font-weight: normal;
+  opacity: .8;
+}
+a.tag-link:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* ===============================
+   POST NAV
+   =============================== */
+nav.post-nav a {
+  font-weight: normal;
+}
+
+/* ===============================
   SYTAX STYLE END
 =============================== */

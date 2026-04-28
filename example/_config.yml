@@ -26,7 +26,7 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
 
-permalink: /:year/:month/:day/:title/
+permalink: /:title/
 
 # Feed settings
 feed:

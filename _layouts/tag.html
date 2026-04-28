@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<h1>TAG: {{ page.tag | upcase }}</h1>
+<hr>
+{% assign tagged_posts = site.posts | where_exp: "post", "post.tags contains page.tag" %}
+{% if tagged_posts.size == 0 %}
+  <p>No posts found.</p>
+{% else %}
+  {% for post in tagged_posts %}
+    {% include post-list.html %}
+  {% endfor %}
+{% endif %}

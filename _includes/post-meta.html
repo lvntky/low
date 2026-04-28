@@ -1,11 +1,19 @@
+{% assign words = content | number_of_words %}
+{% assign reading_time = words | divided_by: 200 %}
+{% if reading_time == 0 %}{% assign reading_time = 1 %}{% endif %}
+
 <p class="meta" style="margin:0 0 2ch 0; opacity:.8;">
   <time datetime="{{ page.date | date_to_xmlschema }}">
     {{ page.date | date: "%d/%m/%Y" }}
   </time>
+  · {{ reading_time }} min read
   {% if page.categories and page.categories.size > 0 %}
     · {{ page.categories | array_to_sentence_string }}
   {% endif %}
   {% if page.tags and page.tags.size > 0 %}
-    · tags: {{ page.tags | array_to_sentence_string }}
+    · tags:
+    {% for tag in page.tags %}
+      <a class="tag-link" href="{{ site.baseurl }}/tags/{{ tag | slugify }}/">{{ tag }}</a>{% unless forloop.last %},{% endunless %}
+    {% endfor %}
   {% endif %}
 </p>
