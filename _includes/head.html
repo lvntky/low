@@ -29,7 +29,7 @@
   "author": {
     "@type": "Person",
     "name": {{ site.author.name | default: site.author | jsonify }},
-    "url": {{ site.url | jsonify }}
+x    "url": {{ site.url | jsonify }}
   },
   "description": {{ page.description | default: site.description | strip_html | jsonify }},
   "url": "{{ site.url }}{{ page.url }}"
