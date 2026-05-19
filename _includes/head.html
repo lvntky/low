@@ -1,6 +1,5 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=12.0, minimum-scale=1.0, user-scalable=yes">
-<title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
 
 {% if page.description %}
   <meta name="description" content="{{ page.description | strip_html | truncate: 160 }}">
@@ -8,7 +7,8 @@
   <meta name="description" content="{{ site.description | strip_html | truncate: 160 }}">
 {% endif %}
 
-<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+<link rel="preload" href="{{ '/assets/css/main.css' | relative_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}"></noscript>
 
 {% if site.favicon %}
   <link rel="icon" href="{{ site.favicon | relative_url }}">
@@ -29,7 +29,7 @@
   "author": {
     "@type": "Person",
     "name": {{ site.author.name | default: site.author | jsonify }},
-x    "url": {{ site.url | jsonify }}
+    "url": {{ site.url | jsonify }}
   },
   "description": {{ page.description | default: site.description | strip_html | jsonify }},
   "url": "{{ site.url }}{{ page.url }}"
