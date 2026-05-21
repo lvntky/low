@@ -1,12 +1,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=12.0, minimum-scale=1.0, user-scalable=yes">
 
-{% if page.description %}
-  <meta name="description" content="{{ page.description | strip_html | truncate: 160 }}">
-{% elsif site.description %}
-  <meta name="description" content="{{ site.description | strip_html | truncate: 160 }}">
-{% endif %}
-
 <link rel="preload" href="{{ '/assets/css/main.css' | relative_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}"></noscript>
 
@@ -17,6 +11,17 @@
 <link rel="alternate" type="application/rss+xml" title="{{ site.title }} RSS" href="{{ site.feed.path | default: '/rss.xml' | relative_url }}">
 
 {% seo %}
+
+{% assign post_image = page.image | default: site.image %}
+{% if post_image %}
+  {% unless post_image contains "://" %}
+    {% assign post_image = post_image | absolute_url %}
+  {% endunless %}
+  <meta property="og:image" content="{{ post_image }}">
+  <meta name="twitter:image" content="{{ post_image }}">
+{% endif %}
+
+<meta name="twitter:description" content="{{ page.description | default: site.description | strip_html | truncate: 160 }}">
 
 {% if page.layout == 'post' %}
 <script type="application/ld+json">
@@ -33,6 +38,9 @@
   },
   "description": {{ page.description | default: site.description | strip_html | jsonify }},
   "url": "{{ site.url }}{{ page.url }}"
+  {% if page.image %}
+  ,"image": "{{ page.image | absolute_url }}"
+  {% endif %}
   {% if page.tags and page.tags.size > 0 %}
   ,"keywords": {{ page.tags | join: ", " | jsonify }}
   {% endif %}

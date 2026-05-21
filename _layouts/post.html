@@ -11,7 +11,50 @@ layout: default
   </div>
 
   <hr>
-  <nav class="post-nav" style="display:flex; justify-content:space-between;">
+
+  {% assign related_posts = "" | split: "" %}
+  {% for candidate in site.posts %}
+    {% if candidate.url != page.url %}
+      {% for tag in page.tags %}
+        {% if candidate.tags contains tag %}
+          {% assign already_added = false %}
+          {% for r in related_posts %}
+            {% if r.url == candidate.url %}
+              {% assign already_added = true %}
+            {% endif %}
+          {% endfor %}
+          {% unless already_added %}
+            {% assign related_posts = related_posts | push: candidate %}
+          {% endunless %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+
+  {% if related_posts.size > 0 %}
+  <h2 class="heading">Related Articles</h2>
+  <hr>
+  <p style="text-align:left; margin-bottom:1ch;">
+    {% for post in related_posts limit: 3 %}
+      {{ post.date | date: "%d/%m/%Y" }}: <a href="{{ post.url | relative_url }}">{{ post.title }}</a><br>
+    {% endfor %}
+  </p>
+  {% elsif site.posts.size > 1 %}
+  <h2 class="heading">More Articles</h2>
+  <hr>
+  <p style="text-align:left; margin-bottom:1ch;">
+    {% assign other_count = 0 %}
+    {% for post in site.posts %}
+      {% if post.url != page.url and other_count < 3 %}
+        {{ post.date | date: "%d/%m/%Y" }}: <a href="{{ post.url | relative_url }}">{{ post.title }}</a><br>
+        {% assign other_count = other_count | plus: 1 %}
+      {% endif %}
+    {% endfor %}
+  </p>
+  {% endif %}
+
+  <nav class="post-nav" style="display:flex; justify-content:space-between; margin-top:2ch;">
     <div class="prev">
       {% if page.previous %}
         ← <a href="{{ page.previous.url | relative_url }}">{{ page.previous.title }}</a>

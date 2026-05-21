@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-<h1 class="heading">{{ site.title }}</h1>
+<h1 class="heading">{{ site.tagline | default: site.title }}</h1>
 <hr>
 
 <p>{{ site.description }}</p>
@@ -13,6 +13,19 @@ layout: default
 <h2 class="heading">Projects</h2>
 <hr>
 Ongoing… <a href="{{ '/projects/' | relative_url }}">Projects</a>
+
+{% if site.bio %}
+<h2 class="heading">About</h2>
+<hr>
+<p>{{ site.bio }}</p>
+  {% if site.bio_links %}
+  <p>
+    {% for link in site.bio_links %}
+      <a href="{{ link.url }}">{{ link.label }}</a>{% unless forloop.last %} &nbsp;·&nbsp; {% endunless %}
+    {% endfor %}
+  </p>
+  {% endif %}
+{% endif %}
 
 <hr>
 <center><span class="sun">*</span></center>
